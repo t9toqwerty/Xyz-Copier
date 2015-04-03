@@ -28,11 +28,8 @@ public class Main {
 			File[] files = dir.listFiles();
 			for (File file : files) {
 				if (file.isDirectory()) {
-					// System.out.println("directory:" +
-					// file.getCanonicalPath());
 					displayDirectoryContents(file);
 				} else {
-					// System.out.println(file.getCanonicalPath());
 					source_files.push(file.getCanonicalPath().toString());
 				}
 			}
@@ -81,31 +78,20 @@ public class Main {
 							+ temp2;
 					String temp4[] = temp3.split("/");
 					String temp5 = temp3.replace(temp4[temp4.length - 1], "");
-					// System.out.println(temp5);
 					if (!new File(temp5).exists()) {
 						if (new File(temp5).mkdirs()) {
-							// System.out.println("Directory doesn't exist but created successfully.");
 						} else {
 
-							// System.out.println("Directory doesn't exist and not created.");
 						}
 					} else {
-						// System.out.println("Directory exists.");
 					}
 					System.out.println(new File(temp).length());
 					c.all_file_size = c.all_file_size + new File(temp).length();
 					target_file.add(temp3);
-
 				}
 			} else {
 				File file = new File(args[i]);
 				String temp[] = file.getAbsolutePath().split("/");
-				/*
-				 * System.out.println("Ading file.....");
-				 * System.out.println(file);
-				 * System.out.println(m.target_directory + "/" +
-				 * temp[temp.length - 1]);
-				 */
 				source_file.add(file.toString());
 				System.out.println(file.length());
 				c.all_file_size = c.all_file_size + file.length();
@@ -125,9 +111,6 @@ public class Main {
 		Iterator<String> sf = source_file.iterator();
 		Iterator<String> tf = target_file.iterator();
 		while (sf.hasNext() && tf.hasNext()) {
-			/*
-			 * System.out.println(sf.next()); System.out.println(tf.next());
-			 */
 			c.streamCopy(sf.next(), tf.next(), main_mw);
 		}
 		if (c.all_copiedfileSize_percentage == 100) {
