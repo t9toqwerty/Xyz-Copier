@@ -33,21 +33,14 @@ public class Copy {
 	String current_write_speed = "";
 	long all_file_size = 0;
 
-	// MainWindow mainwindow = new MainWindow("XYZ Copier");
 
 	Copy() {
-		// mainwindow.setVisible(true);
 	}
 
 	String calculate_Speed(int length, double sec) {
-		// System.out.println("time = " + nano_sec);
-		// System.out.println("time in sec = " + time_in_sec);
 		double length_in_MB = length / (1024 * 1024);
-		// System.out.println("length  =" + length);
-		// System.out.println("length in mb =" + length_in_MB);
 		double speed = length_in_MB / sec;
 		speed = Math.round(speed);
-		// System.out.println(speed + " MB/SEC");
 		return speed + " MB/SEC";
 	}
 
@@ -65,7 +58,6 @@ public class Copy {
 		FileChannel input_channel = null;
 		FileChannel output_channel = null;
 		try {
-			// Files.copy(target_file, target_directory);
 			long start = System.nanoTime();
 			input_channel = new FileInputStream(target_file).getChannel();
 			output_channel = new FileOutputStream(target_directory)
@@ -107,22 +99,16 @@ public class Copy {
 		String unit = "";
 		if (size > 1 && size < 1024) {
 			unit = " Byte";
-			// System.out.println("Size is " + size + " Byte.");
 		} else if (size >= 1025 && size < 1024 * 1024) {
 			size = size / 1024;
 			unit = " KB";
-			// System.out.println("Size is " + size + " KB.");
 		} else if (size >= 1048576 && size < 1073741824) {
 			unit = " MB";
 			size = size / (1024 * 1024);
-			// System.out.println("Size is " + size + " MB.");
 		} else if (size >= 1073741824) {
 			size = size / (1024 * 1024 * 1024);
 			unit = " GB";
-			// System.out.println("Size is " + size / (1024 * 1024 * 1024) +
-			// " GB.");
 		} else {
-			// System.out.println("No File");
 			size = 00;
 		}
 
@@ -136,22 +122,16 @@ public class Copy {
 		if (file.exists()) {
 			if (size > 1 && size < 1024) {
 				unit = " Byte";
-				// System.out.println("Size is " + size + " Byte.");
 			} else if (size >= 1025 && size < 1024 * 1024) {
 				size = size / 1024;
 				unit = " KB";
-				// System.out.println("Size is " + size + " KB.");
 			} else if (size >= 1048576 && size < 1073741824) {
 				unit = " MB";
 				size = size / (1024 * 1024);
-				// System.out.println("Size is " + size + " MB.");
 			} else if (size >= 1073741824) {
 				size = size / (1024 * 1024 * 1024);
 				unit = " GB";
-				// System.out.println("Size is " + size / (1024 * 1024 * 1024) +
-				// " GB.");
 			} else {
-				// System.out.println("No File");
 				size = 00;
 			}
 		}
@@ -175,20 +155,12 @@ public class Copy {
 		current_file_no=current_file_no+1;
 		mainwindow.current_file_name.setText(get_source_file.getName());
 		mainwindow.file_number.setText("Copying "+current_file_no+" Out Of "+file_no+" ");
-		// System.out.println(mainwindow.jLabel1.getText());
 		while ((length = is.read(buffer)) > 0) {
 			long old_target_file_size = get_target_file.length();
 			os.write(buffer, 0, length);
 			long new_target_file_size = get_target_file.length();
 			double ins_end = System.nanoTime();
 			target_file_size = get_target_file.length();
-			// System.out.println((int)(source_file_size - target_file_size));
-			// System.out.println(ins_end
-			// +" - "+start+" = "+(ins_end-start)+" = "+((ins_end-start)/1000000000));
-			// current_write_speed = calculate_Speed( (int) (source_file_size -
-			// target_file_size),((ins_end-start)/1000000000));
-			// mainwindow.jLabel2.setText("Current Speed :" +
-			// current_write_speed);
 			copiedfileSize = target_file_size;
 			System.out.println("All Copied file" + all_copiedfileSize);
 			all_copiedfileSize = all_copiedfileSize
@@ -210,10 +182,6 @@ public class Copy {
 			mainwindow.current_progress
 					.setValue((int) copiedfileSize_percentage);
 			mainwindow.current_progress.setStringPainted(true);
-			// System.out.println(copiedfileSize);
-			// System.out.println(source_file_size);
-			// System.out.println(target_file_size);
-
 		}
 		mainwindow.current_progress.setValue(0);
 		os.flush();
@@ -223,19 +191,4 @@ public class Copy {
 		System.out.println("Total time taken :- " + (end - start) / 1000000000
 				+ " Seconds.");
 	}
-
-	// public static void main(String[] args) throws IOException {
-	// // TODO code application logic here
-	// Scanner s = new Scanner(System.in);
-	// // System.out.println("Enter file address.");
-	// //String target_file = s.nextLine();
-	// //System.out.println("Enter target folder address.");
-	// //String target_directory = s.nextLine();
-	// Copy c = new Copy();
-	// c.copyBufferedStream("E:\\IMG_20150224_170404037_HDR.jpg",
-	// "H:\\IMG_20150224_170404037_HDR.jpg");
-	// System.out.println("Size is " +
-	// c.getFileSize("H:\\\\Zulu (2013) 720p.mkv"));
-	// c.streamCopy("E:\\IMS.zip", "H:\\IMS.zip");
-	// }
 }
