@@ -9,9 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 public class MainWindow extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	JPanel first_panel, second_panel, third_panel, fourth_panel, fifth_panel,
 			sixth_panel;
@@ -47,7 +44,6 @@ public class MainWindow extends JFrame {
 		close = new JButton("Close");
 		total_progress = new JProgressBar();
 		current_progress = new JProgressBar();
-		//first_panel.setBackground(Color.RED);
 		this.add(first_panel);
 		first_panel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
 		second_panel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
@@ -58,29 +54,22 @@ public class MainWindow extends JFrame {
 		first_panel.add(current_file_name);
 		first_panel.add(file_number);
 		first_panel.add(total_file_size);
-		//second_panel.setBackground(Color.BLUE);
 		second_panel.add(total_progress);
 		this.add(second_panel);
-		//third_panel.setBackground(Color.GREEN);
 		this.add(third_panel);
 		third_panel.add(remaining_time);
 		third_panel.add(current_speed);
 		third_panel.add(current_file_size);
-		//fourth_panel.setBackground(Color.CYAN);
 		fourth_panel.add(current_progress);
 		this.add(fourth_panel);
-		//fifth_panel.setBackground(Color.CYAN);
-		// sixth_panel.add(current_speed,BorderLayout.LINE_START);
 		this.add(sixth_panel);
 		fifth_panel.add(start);
 		fifth_panel.add(pause);
 		fifth_panel.add(skip);
 		fifth_panel.add(close);
 		this.add(fifth_panel);
-
 		this.setResizable(false);
 		this.setTitle(title);
-
 		this.setVisible(true);
 	}
 }
