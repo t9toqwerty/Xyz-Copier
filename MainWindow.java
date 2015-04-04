@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	JPanel first_panel, second_panel, third_panel, fourth_panel, fifth_panel,
 			sixth_panel;
@@ -38,10 +39,14 @@ public class MainWindow extends JFrame {
 		total_file_size = new JLabel(" Total: 00 MB of 00 MB");
 		remaining_time = new JLabel("00 Min 00 Sec  ");
 		current_speed = new JLabel("Speed : 00 MB/Sec  ");
-		start = new JButton("Start");
+		more = new JButton("More");
+		more.addActionListener(this);
 		pause = new JButton("Pause");
+		pause.addActionListener(this);
 		skip = new JButton("Skip");
-		close = new JButton("Close");
+		skip.addActionListener(this);
+		cancel = new JButton("Cancel");
+		cancel.addActionListener(this);
 		total_progress = new JProgressBar();
 		current_progress = new JProgressBar();
 		this.add(first_panel);
@@ -71,5 +76,33 @@ public class MainWindow extends JFrame {
 		this.setResizable(false);
 		this.setTitle(title);
 		this.setVisible(true);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == pause) {
+			System.out.println("Pause button clicked.");
+			if (Copy.isPaused == false) {
+				Copy.isPaused = true;
+				pause.setText("Resume");
+			} else if (Copy.isPaused == true) {
+				Copy.isPaused = false;
+				pause.setText("Pause");
+			}
+		}
+		if (e.getSource() == skip) {
+
+		}
+		if (e.getSource() == cancel) {
+			int choice = JOptionPane.showConfirmDialog(null,
+					"Do you Really want to Cancle ?", "Confirm Please",
+					JOptionPane.YES_NO_OPTION);
+			if (choice == 0) {
+				System.exit(0);
+			}
+		}
+		if (e.getSource() == more) {
+
+		}
 	}
 }
