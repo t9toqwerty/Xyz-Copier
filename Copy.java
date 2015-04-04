@@ -32,7 +32,7 @@ public class Copy {
 	String currentfileSize = "";
 	String current_write_speed = "";
 	long all_file_size = 0;
-
+	static boolean isPaused = false;
 
 	Copy() {
 	}
@@ -182,6 +182,15 @@ public class Copy {
 			mainwindow.current_progress
 					.setValue((int) copiedfileSize_percentage);
 			mainwindow.current_progress.setStringPainted(true);
+			while (isPaused) {
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//System.out.println("here");
+			}
 		}
 		mainwindow.current_progress.setValue(0);
 		os.flush();
